@@ -19,6 +19,7 @@ window.onload = function() {
     getMovieInfo(movie)
     getNYTimesReview(movie.Title)
     getVideo(movie.Title)
+    getImgur(movie.Title)
   })
   .catch(err => {
     console.log('error -->', err.response)
@@ -100,6 +101,34 @@ function getVideo(movieName) {
 }
 
 function getImgur(movieName) {
-
+  axios({
+    method: 'post',
+    url: `${BASE_URL}/imgur`,
+    headers: {
+      token
+    },
+    data: {
+      title: movieName
+    }
+  })
+  .then(response => {
+    console.log('imgur -->', response.data)
+    let imgUrl = response.data.data
+    $('#imgur').append(`
+    <h5>Related Images</h5>
+    <div class="row">
+      <div class="col s4">
+        <div class="card">
+          <div class="card-image">
+            <img src="${imgUrl}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    `)
+  })
+  .catch(err => {
+    console.log(err.response)
+  })
 }
 
