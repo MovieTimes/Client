@@ -34,11 +34,12 @@ function getMovieInfo(movie) {
       </div>
       <div class="card-content">
         <span class="card-title">${movie.Title}</span>
-        <p>Director: ${movie.Director}</p>
-        <p>Rating: ${movie.Ratings[0].Value}</p>
-        <p>Release date: ${movie.Released}</p>
+        <p><strong style="color: #f9a825">Director:</strong> ${movie.Director}</p>
+        <p><strong style="color: #f9a825">Rating:</strong> ${movie.Ratings[0].Value}</p>
+        <p><strong style="color: #f9a825">Release date:</strong> ${movie.Released}</p>
+        <p><strong style="color: #f9a825">Actors:</strong> ${movie.Actors}</p>
         <br>
-        <p>${movie.Plot}</p>
+        <p style="color: #888888">${movie.Plot}</p>
       </div>
   </div>
   `)
@@ -67,6 +68,7 @@ function getNYTimesReview(movieName) {
         <p>${summary}</p>
       </div>
     </div>
+    <br>
     `)
   })
   .catch(err => {

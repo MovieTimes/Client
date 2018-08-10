@@ -4,7 +4,7 @@ const token = localStorage.getItem('token')
 
 window.onload = function() {
   let searchParam = window.location.href.split('?search')[1]
-  let title = searchParam || 'Mission Impossible'
+  let title = searchParam || 'hack'
 
   axios({
     method: 'post',
@@ -51,11 +51,20 @@ function listMovies(searchData) {
     <div class="row">
       <div class="col s12">
         <div class="card">
-          <div class="card-content">
-            <span class="card-title"><strong>${data.Title}</strong></span>
-            <p style="color: #f9a825">Released: ${data.Year}</p>
-            <p id="rating_${key}"></p>
-            <p style="color:#888888" id="desc_${key}"></p>
+          <div class="row">
+            <div class="col s4">
+              <div id="poster_${key}">
+              </div>
+            </div>
+            <div class="col s8">
+              <div class="card-content">
+                <span class="card-title"><strong>${data.Title}</strong></span>
+                <p style="color: #f9a825">Released: ${data.Year}</p>
+                <p id="rating_${key}"></p>
+                <br>
+                <p style="color:#888888" id="desc_${key}"></p>
+              </div>
+            </div>
           </div>
           <div class="card-action">
             <a href="/details.html?${data.imdbID}">Details</a>
@@ -80,11 +89,15 @@ function addInfo(imdbID, key) {
   })
   .then(response => {
     console.log('description imdbID')
+    let poster = response.data.data.Poster
     let plot = response.data.data.Plot
     if (plot === 'N/A') plot = 'No description'
     let rating = response.data.data.Ratings[0].Value
     $("#desc_" + key).append(plot)
     $("#rating_" + key).append(`Rating: ${rating}`)
+    $("#poster_" + key).append(`
+      <img src="${poster}" style="width: 100%;" />
+    `)
   })
   .catch(err => {
     console.log('error -->', err.response)
