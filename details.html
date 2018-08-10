@@ -28,7 +28,7 @@
         <div class="col s2">
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-              <button class="btn waves-effect waves-light" type="submit" name="action">
+              <button onclick="logout()" class="btn waves-effect waves-light" type="submit" name="action">
                 Logout
               </button>
             </li>
@@ -41,65 +41,15 @@
   <div class="container" id="details-container">
     <div class="row">
       <div class="col s12 m4" id="movie-info">
-        <div class="card">
-          <div class="card-image">
-            <img src="https://ia.media-imdb.com/images/M/MV5BODJmZmFiNzQtMDJiYS00ZTgzLTljZGMtNjEzNzM4NmEyYjNiXkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_SX300.jpg" alt="">
-          </div>
-          <div class="card-content">
-            <span class="card-title">Hello Dolly!</span>
-            <p>A self-help seminar inspires a sixty-something woman to romantically pursue her younger co-worker.</p>
-          </div>
-        </div>
       </div>
       <div class="col s12 m8">
         <div id="nytimes">
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">NY Times Review</span>
-              <p>Rating:</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Duis sed interdum ipsum, vitae ultricies purus. 
-                  Donec varius neque felis, dignissim mollis leo porta ut. 
-                  Suspendisse porttitor a nibh quis placerat. 
-                  Quisque tincidunt lacus a hendrerit egestas. 
-                  Nam non sagittis lectus. 
-                  Pellentesque ac mi venenatis metus porttitor pulvinar. 
-                  Integer dui dolor, vehicula eu diam vitae, euismod pulvinar ipsum.
-              </p>
-            </div>
-          </div>
         </div>
+        <br>
         <div id="youtube">
-          <h5>Related Video</h5>
-          <div class="video-container">
-            <iframe src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
-          </div>
         </div>
         <div id="imgur">
           <br>
-          <h5>Related Images</h5>
-          <div class="row">
-            <div class="col s4">
-              <div class="card">
-                <div class="card-image">
-                  <img src="https://ia.media-imdb.com/images/M/MV5BODJmZmFiNzQtMDJiYS00ZTgzLTljZGMtNjEzNzM4NmEyYjNiXkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_SX300.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col s4">
-              <div class="card">
-                <div class="card-image">
-                  <img src="https://ia.media-imdb.com/images/M/MV5BMzkzMDc0Nzg5OF5BMl5BanBnXkFtZTcwMDU0MzAyOA@@._V1_SX300.jpg" alt="">
-                </div>
-              </div>
-            </div>
-            <div class="col s4">
-              <div class="card">
-                <div class="card-image">
-                  <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZGM5NjliODgtODVlOS00OWZmLWIzYzMtMTI2OWIzMTM1ZGRhXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg" alt="">
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -107,7 +57,9 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="scripts/details.js"></script>
+  <script src="scripts/logout.js"></script>
 </body>
 </html>

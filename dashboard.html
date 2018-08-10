@@ -28,7 +28,11 @@
         <div class="col s2">
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
-              <button class="btn waves-effect waves-light" type="submit" name="action">
+              <button 
+                class="btn waves-effect waves-light" 
+                type="submit" 
+                name="action"
+                onclick="logout()">
                 Logout
               </button>
             </li>
@@ -38,72 +42,12 @@
     </div>
   </nav>
   <div class="container" id="list">
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title"><strong>Mission Impossible: Ghost Protocol</strong></span>
-            <p style="color: #f9a825">Released: 2025</p>
-            <p style="color:#888888">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Duis sed interdum ipsum, vitae ultricies purus. 
-              Donec varius neque felis, dignissim mollis leo porta ut. 
-              Suspendisse porttitor a nibh quis placerat. 
-              Quisque tincidunt lacus a hendrerit egestas. 
-              Nam non sagittis lectus. 
-              Pellentesque ac mi venenatis metus porttitor pulvinar. 
-              Integer dui dolor, vehicula eu diam vitae, euismod pulvinar ipsum.</p>
-          </div>
-          <div class="card-action">
-            <a href="/details.html?asdasd">Details</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Harry Potter and The Order of Phoenix</span>
-            <p>Test paragraph</p>
-          </div>
-          <div class="card-action">
-            <a href="/details.html?bcde">Details</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-        <div class="col s12">
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">Harry Potter and The Order of Phoenix</span>
-              <p>Test paragraph</p>
-            </div>
-            <div class="card-action">
-              <a href="/details.html?bcde">Details</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-          <div class="col s12">
-            <div class="card">
-              <div class="card-content">
-                <span class="card-title">Harry Potter and The Order of Phoenix</span>
-                <p>Test paragraph</p>
-              </div>
-              <div class="card-action">
-                <a href="/details.html?bcde">Details</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <script src="scripts/dashboard.js"></script>
+  <script src="scripts/logout.js"></script>
 </body>
 </html>
