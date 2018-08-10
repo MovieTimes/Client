@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Movies Time</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</head>
+<body>
+  <script>
+    window.onload = function () {
+      if (localStorage.getItem("token")) {
+        window.location= "http://localhost:8080/dashboard.html"
+      }
+    }
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+      if (response.status === 'connected') {
+        axios.post('http://localhost:3000/users/loginfb', {
+          fbtoken: response.authResponse.accessToken
+        })
+        .then(function(res) {
+          localStorage.setItem("token", res.data.token);
+          window.location= "http://localhost:8080/dashboard.html"
+          
+        })
+        .catch(function(error) {
+          $("#alertLogin").css("display","block").text("Login with facebook error")
+        })
+      } 
+    }
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '2190548590958522',
+        cookie     : true,  // enable cookies to allow the server to access 
+                            // the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.8' // use graph api version 2.8
+      });
+      // FB.getLoginStatus(function(response) {
+      //   statusChangeCallback(response);
+      // });
+      
+    };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    function login() {
+      let loginData = {
+        email : $("#email").val(),
+        password : $("#password").val(),
+      }
+      axios.post('http://localhost:3000/users/login', loginData)
+        .then(function(response) {
+          if (response.status == 201) {
+            $("#alertLogin").css("display","block").text(response.data.message)
+          } else {
+            localStorage.setItem("token", response.data.token);
+            swal("Success!", "You successfully logged in, click OK!", "success")
+              .then(value => {
+                window.location= "http://localhost:8080/dashboard.html"
+              })
+          }
+        })
+        .catch(function(error) {
+          $("#alertLogin").css("display","block").text("login error")
+        })
+    }
+
+
+
+  </script>
+
+
+  <div class="valign-wrapper row login-box">
+    <div class="col card hoverable s4 pull-s4">
+      <form>
+        <div class="card-content">
+          <span class="card-title">Login to Movies Time</span>
+          <div class="row">
+            <div class="input-field col s12">
+              <label for="email">Email address</label>
+              <input type="email" class="validate" name="email" id="email" />
+            </div>
+            <div class="input-field col s12">
+              <label for="password">Password </label>
+              <input type="password" class="validate" name="password" id="password" />
+              <p id = "alertLogin" style="display: none; color : red"></p>
+            </div>
+          </div>
+        </div>
+        <div class="card-action center-align">
+          <div class="row">
+            <a id="login" onclick="login()" class="btn col s10 offset-s1 waves-effect yellow darken-3 hoverable">Login</a>
+            <br><br>
+            <div class="fb-login-button hoverable" type="button" data-width="370px" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false" scope="public_profile,email" onlogin="checkLoginState()"></div>
+            <br><br>
+            <a class="grey-text text-darken-4 hoverable" id="register" href="/register.html">register here</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+    html,
+    body,
+    .login-box {
+      height: 100%;
+    }
+
+    body {
+      background-image : url("./img/bg.jpeg");
+      background-size: 100% auto;
+      background-repeat : no-repeat
+    }
+  
+  </style>
+</body>
+</html>
